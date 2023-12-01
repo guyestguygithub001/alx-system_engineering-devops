@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-# Displays all acive IPv4 addresses on machine,
+# This script displays all active IPv4 IPs on the machine it’s executed on
+# It uses the ip command to list all interfaces and their addresses
+# It filters out the loopback interface and the IPv6 addresses
+# It prints only the IPv4 addresses in the output
 
-ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-
+ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | tr '\n' '$' | sed 's/\$$/\n/'
