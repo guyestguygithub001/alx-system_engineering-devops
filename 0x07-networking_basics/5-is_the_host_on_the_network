@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
-# This script pings an IP address passed as an argument.
+# This script pings an IP address passed as an argument and displays the result
+# It uses the ping command to send ICMP echo requests to the IP address
+# It limits the number of requests to 5 using the -c option
+# It prints the usage message if no argument is passed
 
+# Check if an argument is passed
 if [ $# -eq 0 ]; then
   echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
   exit 1
 fi
 
-ping -c 5 "$1"
+# Assign the argument to a variable
+IP_ADDRESS=$1
+
+# Ping the IP address 5 times
+ping -c 5 "$IP_ADDRESS"
+
