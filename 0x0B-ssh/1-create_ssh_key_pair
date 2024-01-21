@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Generating 2 SSH key-pairs, Public and private keys.
+
+ssh-keygen -t rsa -b 4096 -P betty -f school
