@@ -2,7 +2,7 @@
 # For using puppet code to effect and add changes to config file
 
 file { 'ect/ssh/ssh_config':
-	ensure => present,
+	ensure => present
 
 content =>"
 
