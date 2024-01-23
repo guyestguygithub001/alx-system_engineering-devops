@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Turn  on Apache Server with this script
+
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
