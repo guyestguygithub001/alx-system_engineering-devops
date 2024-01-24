@@ -16,34 +16,4 @@ sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled
 sudo service nginx restart
 
 
-# Install Nginx
-apt update
-apt install -y nginx
-
-# Replace a line with multiple lines with sed
-echo 'sed "/foo/ { N; s/foo\\n.*/bar\\nbaz\\nqux/ }" file.txt' > sed_script.sh
-
-# Configure Nginx to redirect /redirect_me
-echo 'server {
-  . . .
-  location = /redirect_me {
-    return 301 $scheme://www.youtube.com/watch?v=QH2-TGUlwu4$request_uri;
-  }
-  . . .
-}' > /etc/nginx/sites-available/default
-
-# Reload Nginx
-systemctl reload nginx
-
-
-server {
-  . . .
-  location = /redirect_me {
-    return 301 $scheme://www.youtube.com/watch?v=QH2-TGUlwu4$request_uri;
-  }
-  . . .
-}
-
-
-sed '/foo/ { N; s/foo\\n.*/bar\\nbaz\\nqux/ }' file.txt
 
