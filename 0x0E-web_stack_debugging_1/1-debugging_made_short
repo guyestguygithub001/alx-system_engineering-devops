@@ -5,4 +5,6 @@ apt-get install -y nginx
 service nginx start
 sed -i 's/listen  .*/listen 80;/' /etc/nginx/sites-available/default
 service nginx reload
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+kill "$(pgrep 'nginx' | head -1)”
 
