@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# same as task 0 but -f added to ln it to forcefully rids the file if it exists,,
+#-f added to task 0 to forcefully rids the file if it exists,,
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx restart
-rm /run/nginx.pid
+service nginx start
+sed -i 's/listen  .*/listen 80;/' /etc/nginx/sites-available/default
+service nginx reload
 
