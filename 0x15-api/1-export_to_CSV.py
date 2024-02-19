@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Exports given to-do list information for specified employee ID to CSV format,"""
+"""Exports to-do list info. for given employee ID to CSV format,"""
 
 import csv
 import requests
