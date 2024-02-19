@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Exports given to-do list information for specified employee ID to CSV format,"""
 
-import sys
-import requests
 import csv
+import requests
+import sys
 
 
 if __name__ == "__main__":

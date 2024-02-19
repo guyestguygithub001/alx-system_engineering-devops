@@ -6,8 +6,8 @@ This script takes an employee ID as a command-line argument and exports
 corresponding user info. and to-do list to JSON file,
 """
 
-import requests
 import json
+import requests
 import sys
 
 

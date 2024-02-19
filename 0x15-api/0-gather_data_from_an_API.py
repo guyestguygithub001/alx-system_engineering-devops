@@ -7,8 +7,8 @@ a corresponding user info and to-do list from JSONPlaceholder API.
 It then prints all tasks completed by given employee.
 """
 
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
