@@ -31,4 +31,3 @@ if __name__ == "__main__":
 
     # Prints completed tasks each with indentation.
     [print("\t {}".format(complete)) for complete in completed]
-
