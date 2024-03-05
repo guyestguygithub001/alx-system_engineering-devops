@@ -1,38 +1,31 @@
 #!/usr/bin/python3
+
 """
-A script that is to  print hot posts on a given Reddit subreddit
+A script that prints hotposts on a Reddit Subreddit,
 """
 
 import requests
 
-
 def top_ten(subreddit):
-    """Prints titles of 10 hottest posts on given subreddit,"""
-    # Constructs URL for subreddit's hot posts in JSON format,
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    """Queries the Reddit API and prints the titles of the first 10 hot posts for a given subreddit,
 
-    # Defines headers for HTTP request, including User-Agent,
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
+    Args:
+        subreddit (str): The name of the subreddit to query,
+    """
 
-    # Defines parameters for request, limits no. of posts to 10
-    params = {
-        "limit": 10
-    }
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    headers = {"User-Agent": "YourAppName/0.1"}  # Replace with your app name
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
-    # Sends GET request to subreddit's hot posts page,
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
-
-    # Checks if response status code read a not-found error (404),
-    if response.status_code == 404:
-        print("None")
-        return
-
-    # Parse the JSON response, extracts data section,
-    results = response.json().get("data")
-
-    # Prints titles of top 10 hottest posts,
-    [print(c.get("data").get("title")) for c in results.get("children")]
+    if response.status_code == 200:
+        data = response.json()
+        for post in data.get("data", {}).get("children", []):
+            if len(post) < 10:  # Check if post data exists
+                continue
+            title = post["data"].get("title", "")
+            print(title)
+            if len(data.get("data", {}).get("children", [])) == 10:
+                break  # Stop after printing 10 titles
+    else:
+        print(None)
 
