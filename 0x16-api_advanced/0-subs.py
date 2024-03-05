@@ -5,22 +5,22 @@
 import requests
 
 def number_of_subscribers(subreddit):
-    """
-    Queries the Reddit API and returns the number of subscribers
-    for a given subreddit.
-    If an invalid subreddit is given, the function will return 0.
-    """
-    # Set the custom user-agent header
-    headers = {'User-Agent': 'python3:0-subs:v1.0 (by /u/wintermancer)'}
+    """Queries the Reddit API to retrieve the number of subscribers for a given subreddit.
 
-    # Make a GET request to the subreddit endpoint
-    response = requests.get('https://www.reddit.com/r/{}/about.json'.format(subreddit), headers=headers)
+    Args:
+        subreddit (str): The name of the subreddit to query.
 
-    # Check the status code and the redirect flag
-    if response.status_code == 200 and not response.json().get('data').get('over18'):
-        # Return the number of subscribers
-        return response.json().get('data').get('subscribers')
+    Returns:
+        int: The number of subscribers for the subreddit. Returns 0 if an invalid subreddit is given.
+    """
+
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {"User-Agent": "YourAppName/0.1"}  # Replace with your app name
+    response = requests.get(url, headers=headers, allow_redirects=False)
+
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("data", {}).get("subscribers", 0)
     else:
-        # Return 0 for invalid subreddit
         return 0
 
