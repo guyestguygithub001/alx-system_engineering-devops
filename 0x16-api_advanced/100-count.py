@@ -8,14 +8,14 @@ import requests
 
 def count_words(subreddit, word_list, after=None, counts={}):
     """
-    Recursive function that queries Reddit API, parses title of all
+    Recursive function that queries Reddit API, parses title of
         hot articles, prints sorted count of given keywords,
     """
     if not word_list or word_list == [] or not subreddit:
         return
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "YourAppName/0.1"}
 
     params = {"limit": 100}
     if after:
