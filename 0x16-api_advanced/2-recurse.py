@@ -8,8 +8,8 @@ import requests
 
 def recurse(subreddit, hot_list=[], after="", count=0):
     """
-    Recursively retrieves list of titles of all hot posts
-    on given subreddit
+    Recursively retrieves a list of heading of all hot posts
+    on given subreddit,
 
     Args:
         subreddit (str): Name of subreddit
@@ -22,7 +22,7 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     Returns:
         list: list of post titles from hot section of subreddit,
     """
-    # Constructs URL for subreddit's hot posts in JSON format,
+    # Constructs a URL for subreddit's hot posts in JSON format,
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
 
     # Defines headers for HTTP request, including User-Agent,
@@ -41,10 +41,10 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     response = requests.get(url, headers=headers, params=params,
                             allow_redirects=False)
 
-    # Checks if response status code indicates not-found error (404),
+    # Checks if response status code reads a not-found error (404),
     if response.status_code == 404:
         return None
-    # Parse JSON response and extract relevant data,
+    # Parses a JSON respons, extracts data,
     results = response.json().get("data")
     after = results.get("after")
     count += results.get("dist")
@@ -53,10 +53,9 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     for c in results.get("children"):
         hot_list.append(c.get("data").get("title"))
 
-    # If there are posts to retrieve, recursively calls function,
+    #  recursively calls function, if it is retreive posts
     if after is not None:
         return recurse(subreddit, hot_list, after, count)
 
     # Returns final list of hot post titles,
     return hot_list
-
