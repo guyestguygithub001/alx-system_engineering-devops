@@ -1,7 +1,16 @@
-# script to fix bad "phpp" extensinos to php "php in ""wp-settings.php"
+# Install the Apache module (if not already installed)
+class { 'apache': }
 
-exec{'fix-wordpress' :
- command => 'sed -i s/phpp/php/g /var/ww/html/wp-settings.php',
- pathe	 => '/usr/local/bin/:/bin/'
+# Define your virtual host configuration
+apache::vhost { 'mywebsite':
+  port    => '80',
+  docroot => '/var/www/html',  # Adjust as needed
+  servername => 'mywebsite.com',  # Replace with your domain
+}
+
+# Ensure Apache is running
+service { 'apache2':
+  ensure => 'running',
+  enable => true,
 }
 
