@@ -1,15 +1,7 @@
-# Install the Apache module (if not already installed)
-class { 'apache': }
+# A puppet script that replaces an error in a file on a server,
+# Assigned to fix a bad `phpp` extensions to `php` in WordPress file `wp-settings.php`,
 
-# Define your virtual host configuration
-apache::vhost { 'mywebsite':
-  port    => '80',
-  docroot => '/var/www/html',  # Adjust as needed
-  servername => 'mywebsite.com',  # Replace with your domain
-}
-
-# Ensure Apache is running
-service { 'apache2':
-  ensure => 'running',
-  enable => true,
+exec { 'fix-wordpress':
+  command => "/bin/sed -i 's/phpp/php/g' /var/www/html/wp-settings.php",
+  path    => '/usr/local/bin:/usr/bin:/bin',
 }
