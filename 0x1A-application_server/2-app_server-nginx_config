@@ -2,7 +2,7 @@ server {
                 listen 80 default_server;
                 listen [::]:80 default_server;
 
-                server_namg 18.209.225.125;
+                server_name 18.209.225.125;
 
                 # customize HTTP response header
                 add_header X-Served-By 482404-web-01;
