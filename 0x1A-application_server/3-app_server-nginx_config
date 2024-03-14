@@ -1,5 +1,5 @@
 server {
-                listen 80 default_server;
+		listen 80 default_server;
                 listen [::]:80 default_server;
 
                 server_name 18.209.225.125;
@@ -11,8 +11,13 @@ server {
                 location = /airbnb-onepage/ {
                         proxy_pass http://127.0.01:5000/airbnb-onepage/;
                 }
-                if ($request_filename ~ redirect_me){
-                        rewrite ^ https://guyestguy.tech/ permanent;
+		
+		# Serve /number_odd_or_even/ route on AirBnB_clone_v2
+		location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+		 proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    		}
+
+		   
                 }
                 error_page 404 /error_404.html;
                 location = /error_404.html {
