@@ -6,7 +6,7 @@ erver {
     server_name 18.209.225.125
 
     # Customized HTTP response header,,
-    add_header X-Served-By 228560-web-01;
+    add_header X-Served-By 482404-web-01;
 
     # Serve a d/airbnb-onepage/ route on AirBnB_clone_v3,,
     location = /airbnb-onepage/ {
